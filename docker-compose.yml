@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  server_1:
+    build:
+      context: server_1
+    ports:
+      - "1111:7777"
+
+
+  server_2:
+    build:
+      context: server_2
+    ports:
+      - "2222:8888"
+    
+  server_3:
+    build:
+      context: server_3
+    ports:
+      - "3333:9999"
+  
+  nginx:
+    build:
+      context: nginx
+    ports:
+      - "8080:8080"
+    links: 
+      - "server_1:firstserver"
+      - "server_2:secondserver"
+      - "server_3:thirdserver"
+    
+
